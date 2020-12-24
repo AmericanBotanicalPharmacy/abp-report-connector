@@ -49,5 +49,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'tiny_tds', '~>2.0.0'
+gem 'tiny_tds', github: 'rails-sqlserver/tiny_tds'
 gem 'activerecord-sqlserver-adapter', github: 'rails-sqlserver/activerecord-sqlserver-adapter'

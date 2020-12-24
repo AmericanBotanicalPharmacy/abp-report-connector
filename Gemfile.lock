@@ -6,6 +6,12 @@ GIT
       activerecord (~> 6.0.0)
       tiny_tds
 
+GIT
+  remote: https://github.com/rails-sqlserver/tiny_tds.git
+  revision: cce0596204d349adcfe3c8762f56435ba5da5aec
+  specs:
+    tiny_tds (2.1.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -164,8 +170,6 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tiny_tds (2.0.0)
-      mini_portile2 (~> 2.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -202,7 +206,7 @@ DEPENDENCIES
   rails (~> 6.0.0)
   sass-rails (>= 6)
   spring
-  tiny_tds (~> 2.0.0)
+  tiny_tds!
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
