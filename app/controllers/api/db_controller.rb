@@ -23,6 +23,10 @@ module Api
           columns: result.columns
         }
       end
+    rescue => e
+      render json: {
+        error: e.message
+      }, status: :bad_request
     end
   end
 end
