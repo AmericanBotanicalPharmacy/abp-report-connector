@@ -1,0 +1,2 @@
+class DatabaseSource < ApplicationRecord
+end
