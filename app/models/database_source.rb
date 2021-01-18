@@ -6,6 +6,8 @@ class DatabaseSource < ApplicationRecord
   validates_presence_of :host, :username, :database, :port, :uuid
 
   def set_encrypted_password
-    self.encrypted_password = Rails::Secrets.encrypt(password)
+    if password.present?
+      self.encrypted_password = Rails::Secrets.encrypt(password)
+    end
   end
 end
