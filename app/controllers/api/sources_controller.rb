@@ -14,7 +14,7 @@ module Api
     end
 
     def update
-      @source = DatabaseSource.find_by(uuid: params[:id])
+      @source = DatabaseSource.find_or_initialize_by(uuid: params[:id])
       if @source.update(source_params)
         render json: {
           success: true
