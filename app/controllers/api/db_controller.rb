@@ -1,12 +1,12 @@
 module Api
   class DbController < BaseController
     def run
-      source = if params[:id]
+      database_source = if params[:id]
         DatabaseSource.find_by(uuid: params[:id])
       else
         DatabaseSource.new(database_source_params)
       end
-      conn = DbConnectionFactory.create(source.generate_database_url)
+      conn = DbConnectionFactory.create(database_source.generate_database_url)
       result = conn.exec_query(params[:sql])
       if conn.is_a?(ActiveRecord::ConnectionAdapters::SQLServerAdapter)
         if result.count > 0
@@ -30,7 +30,7 @@ module Api
       end
     rescue => e
       render json: {
-        error: e.message
+        error: "Failed to execute sql on the db, please check your db config and sql"
       }, status: :bad_request
     end
 
