@@ -25,7 +25,7 @@ class DatabaseSource < ApplicationRecord
     when 'mysql'
       "mysql2://#{username}:#{password}@#{host}:#{port}/#{database}"
     when 'sqlserver'
-      "sqlserver://#{username}:#{password}@#{host}:#{port}/#{database}"
+      "sqlserver://#{username}:#{password}@#{host}:#{port}/#{database}?login_timeout=3&timeout=10"
     end
   end
 end
