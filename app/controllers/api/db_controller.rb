@@ -35,7 +35,7 @@ module Api
     end
 
     def database_source_params
-      params.require(:source).permit(:uuid, :host, :username, :password, :port, :database, :db_type)
+      params.require(:source).permit(:uuid, :host, :username, :password, :port, :database, :db_type).each {|key, value| value.strip! }
     end
   end
 end
