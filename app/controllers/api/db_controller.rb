@@ -30,7 +30,7 @@ module Api
       end
     rescue => e
       render json: {
-        error: "Failed to execute sql on the db, please check your db config and sql"
+        error: e.message.to_s.gsub(database_source.password, '******')
       }, status: :bad_request
     end
 
