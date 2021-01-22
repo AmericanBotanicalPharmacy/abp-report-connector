@@ -12,7 +12,7 @@ class DatabaseSource < ApplicationRecord
   end
 
   def decrypted_password
-    if password.blank?
+    if password.blank? && encrypted_password.present?
       self.password = Rails::Secrets.decrypt(encrypted_password)
     end
   end

@@ -30,7 +30,7 @@ module Api
       end
     rescue => e
       render json: {
-        error: e.message.to_s.gsub("#{database_source.password}", '******')
+        error: (database_source.password.present? ? e.message.to_s.gsub("#{database_source.password}", '******') : e.message)
       }, status: :bad_request
     end
 
