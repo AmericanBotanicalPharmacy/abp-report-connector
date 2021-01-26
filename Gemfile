@@ -53,3 +53,4 @@ gem 'tiny_tds', github: 'rails-sqlserver/tiny_tds'
 gem 'activerecord-sqlserver-adapter', github: 'rails-sqlserver/activerecord-sqlserver-adapter'
 
 gem 'sendgrid-ruby'
+gem 'httparty'
