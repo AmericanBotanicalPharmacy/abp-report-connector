@@ -23,6 +23,8 @@ class MessageHandler
   end
 
   def deliver_email
+    return if @recipients.blank?
+
     mail = SendGrid::Mail.new
     mail.from = Email.new(email: ENV['MAIL_FROM'])
     mail.subject = @subject
@@ -56,6 +58,8 @@ class MessageHandler
   end
 
   def deliver_sms
+    return if @phones.blank?
+
     account_sid = ENV['TWILIO_ACCOUNT_SID']
     auth_token = ENV['TWILIO_AUTH_TOKEN']
 
@@ -63,9 +67,11 @@ class MessageHandler
     @client = Twilio::REST::Client.new account_sid, auth_token
 
     @phones.each do |phone|
+      s_phone = phone.strip.gsub(/\ |\(|\)|\-/, '')
+      s_phone = "+1#{s_phone}" unless phone.start_with?('+1')
       res = @client.messages.create(
         from: ENV['TWILIO_FROM'],
-        to: phone,
+        to: s_phone,
         body: @content
       )
     end
