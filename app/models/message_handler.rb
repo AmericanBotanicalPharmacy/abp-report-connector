@@ -3,7 +3,7 @@ include SendGrid
 require 'json'
 
 class MessageHandler
-  attr_accessor :title, :subject, :recipients, :content, :ss_id, :sheet_id, :oauth_token, :sheet_name
+  attr_accessor :title, :subject, :recipients, :content, :ss_id, :sheet_id, :oauth_token, :sheet_name, :phones
 
   def initialize(options={})
     @title = options[:title]
@@ -14,9 +14,15 @@ class MessageHandler
     @sheet_id = options[:sheet_id]
     @oauth_token = options[:oauth_token]
     @sheet_name = options[:sheet_name]
+    @phones = options[:phones] || []
   end
 
   def deliver
+    deliver_email
+    deliver_sms
+  end
+
+  def deliver_email
     mail = SendGrid::Mail.new
     mail.from = Email.new(email: ENV['MAIL_FROM'])
     mail.subject = @subject
@@ -47,5 +53,21 @@ class MessageHandler
     download_url = "https://docs.google.com/spreadsheets/d/#{@ss_id}/export?exportFormat=xlsx&gid=#{@sheet_id}"
     resp = HTTParty.get(download_url, headers: { 'authorization' => "Bearer #{@oauth_token}" })
     resp.body
+  end
+
+  def deliver_sms
+    account_sid = ENV['TWILIO_ACCOUNT_SID']
+    auth_token = ENV['TWILIO_AUTH_TOKEN']
+
+    # set up a client to talk to the Twilio REST API
+    @client = Twilio::REST::Client.new account_sid, auth_token
+
+    @phones.each do |phone|
+      res = @client.messages.create(
+        from: ENV['TWILIO_FROM'],
+        to: phone,
+        body: @content
+      )
+    end
   end
 end
