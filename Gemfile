@@ -55,3 +55,5 @@ gem 'activerecord-sqlserver-adapter', github: 'rails-sqlserver/activerecord-sqls
 gem 'sendgrid-ruby'
 gem 'httparty'
 gem 'twilio-ruby', '~> 5.29.1'
+
+gem 'rest-client'
