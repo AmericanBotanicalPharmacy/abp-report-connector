@@ -23,9 +23,9 @@ class DatabaseSource < ApplicationRecord
     # sqlserver://sa:StrongPassword!@localhost/abp_report_connector_development
     case db_type
     when 'mysql'
-      "mysql2://#{username}:#{password}@#{host}:#{port}/#{database}?connect_timeout=3"
+      "mysql2://#{username}:#{CGI::escape(password)}@#{host}:#{port}/#{database}?connect_timeout=3"
     when 'sqlserver'
-      "sqlserver://#{username}:#{password}@#{host}:#{port}/#{database}?login_timeout=3&timeout=10000"
+      "sqlserver://#{username}:#{CGI::escape(password)}@#{host}:#{port}/#{database}?login_timeout=3&timeout=10000"
     end
   end
 end
