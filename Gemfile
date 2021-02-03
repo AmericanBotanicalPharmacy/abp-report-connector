@@ -57,3 +57,5 @@ gem 'httparty'
 gem 'twilio-ruby', '~> 5.29.1'
 
 gem 'rest-client'
+
+gem 'devise'
