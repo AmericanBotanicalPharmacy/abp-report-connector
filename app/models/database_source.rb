@@ -1,4 +1,6 @@
 class DatabaseSource < ApplicationRecord
+  belongs_to :user
+
   attr_accessor :password
 
   before_validation :set_encrypted_password

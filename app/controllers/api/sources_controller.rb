@@ -1,7 +1,7 @@
 module Api
   class SourcesController < BaseController
     def create
-      @source = DatabaseSource.new(source_params)
+      @source = DatabaseSource.new(source_params.merge(user: find_user))
       if @source.save
         render json: {
           success: true
@@ -15,7 +15,7 @@ module Api
 
     def update
       @source = DatabaseSource.find_or_initialize_by(uuid: params[:id])
-      if @source.update(source_params)
+      if @source.update(source_params.merge(user: find_user))
         render json: {
           success: true
         }
@@ -40,6 +40,11 @@ module Api
 
     def source_params
       params.require(:source).permit(:uuid, :host, :username, :password, :port, :database, :db_type).each {|key, value| value.try(:strip!) }
+    end
+
+    def find_user
+      return nil if params[:email].blank?
+      User.find_or_create_by(email: params[:email])
     end
   end
 end
