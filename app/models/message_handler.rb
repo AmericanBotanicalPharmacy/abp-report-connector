@@ -68,6 +68,7 @@ class MessageHandler
 
     @phones.each do |phone|
       s_phone = phone.strip.gsub(/\ |\(|\)|\-/, '')
+      next if s_phone.blank?
       s_phone = "+1#{s_phone}" unless phone.start_with?('+1')
       res = @client.messages.create(
         from: ENV['TWILIO_FROM'],
