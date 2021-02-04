@@ -1,5 +1,18 @@
 module Api
   class SourcesController < BaseController
+    def index
+      user = find_user
+      if user.nil?
+        render json: {
+          sources: []
+        }
+      else
+        render json: [
+          sources: user.sources.map(&:as_json)
+        ]
+      end
+    end
+
     def create
       @source = DatabaseSource.new(source_params.merge(user: find_user))
       if @source.save
