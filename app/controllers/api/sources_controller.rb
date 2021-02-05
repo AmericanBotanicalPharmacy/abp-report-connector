@@ -52,7 +52,7 @@ module Api
     end
 
     def source_params
-      params.require(:source).permit(:uuid, :host, :username, :password, :port, :database, :db_type).each {|key, value| value.try(:strip!) }
+      params.require(:source).permit(:name, :uuid, :host, :username, :password, :port, :database, :db_type).each {|key, value| value.try(:strip!) }
     end
 
     def find_user

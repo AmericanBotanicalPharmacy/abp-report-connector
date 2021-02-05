@@ -5,7 +5,7 @@ class DatabaseSource < ApplicationRecord
 
   before_validation :set_encrypted_password
 
-  validates_presence_of :host, :username, :database, :port, :uuid
+  validates_presence_of :name, :host, :username, :database, :port, :uuid
 
   def set_encrypted_password
     if password.present?
