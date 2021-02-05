@@ -7,9 +7,9 @@ module Api
           sources: []
         }
       else
-        render json: [
+        render json: {
           sources: user.sources.map(&:as_json)
-        ]
+        }
       end
     end
 
