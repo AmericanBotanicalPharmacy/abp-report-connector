@@ -7,13 +7,18 @@ class User < ApplicationRecord
 
   def self.from_omniauth(access_token)
     data = access_token.info
-    user = User.where(email: data['email']).first
+    sub = access_token.extra.id_info.sub
+    user = User.find_or_initialize_by(sub: sub)
 
-    unless user
-      user = User.create(
-          email: data['email'],
-      )
-    end
+    attrs_to_update = {
+      email: data['email'],
+      name: data['name'],
+      google_token: access_token.credentials.token
+    }
+    refresh_token = access_token.credentials.refresh_token
+    attrs_to_update[:google_refresh_token] = refresh_token if refresh_token.present?
+
+    user.update(attrs_to_update)
     user
   end
 end
