@@ -61,3 +61,5 @@ gem 'rest-client'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+
+gem 'google-api-client'
