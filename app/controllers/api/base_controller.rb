@@ -15,7 +15,7 @@ class Api::BaseController < ActionController::API
 
   def authenticate_id_token!
     if current_user == nil
-      render json: { error: 'Invalid user' }, status: :unauthorized
+      render json: { error: 'Invalid user' }
     end
   end
 
