@@ -20,6 +20,6 @@ class Api::BaseController < ActionController::API
   end
 
   def current_user
-    @current_user ||= User.find_by_id_token(request.headers['ID_TOKEN'])
+    @current_user ||= User.find_by_id_token(request.headers['ID-TOKEN'])
   end
 end
