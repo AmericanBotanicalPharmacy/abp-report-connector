@@ -21,4 +21,11 @@ class User < ApplicationRecord
     user.update(attrs_to_update)
     user
   end
+
+  def self.find_by_id_token(id_token='')
+    raw_string = id_token.split('.')[1]
+    return if raw_string.blank?
+    payload = JSON.parse(Base64.decode64(raw_string))
+    User.find_by(sub: payload['sub'])
+  end
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     get 'ping', to: 'ping#index'
+    get 'me', to: 'users#me'
     post 'db/run', to: 'db#run'
     post 'message/deliver', to: 'messages#deliver'
     resources :sources, only: [:index, :create, :update, :destroy]
