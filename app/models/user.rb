@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :sources, class_name: 'DatabaseSource'
+  has_many :spreadsheets
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: [:google_oauth2]
