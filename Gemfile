@@ -63,3 +63,6 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
 gem 'google-api-client'
+
+gem 'sidekiq'
+gem "sidekiq-cron", "~> 1.1"
