@@ -17,6 +17,7 @@ class SyncSpreadsheetsWorker
             db_config: job_row[3],
             options: job_row[4]
           )
+          job.update_sidekiq_cron
         end
         spreadsheet.spreadsheet_jobs.where('row_number > ?', values.count).destroy_all
       end
