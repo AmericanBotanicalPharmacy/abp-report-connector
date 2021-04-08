@@ -5,13 +5,11 @@ require "googleauth"
 class SheetWraper
   def initialize(user)
     @user = user
+    authorize
   end
 
   def fetch_sheet_data(spreadsheet_id, range)
-    service = Google::Apis::SheetsV4::SheetsService.new
-    service.authorization = google_secret.to_authorization
-    service.authorization.refresh!
-    response = service.get_spreadsheet_values spreadsheet_id, range
+    response = @service.get_spreadsheet_values spreadsheet_id, range
     puts "Name, Major:"
     puts "No data found." if response.values.empty?
     response.values.each do |row|
@@ -30,5 +28,20 @@ class SheetWraper
         }
       }
     )
+  end
+
+  def append_data(spreadsheet_id, range, values)
+    data = [
+      range: range,
+      values: values
+    ]
+    value_range_object = Google::Apis::SheetsV4::ValueRange.new(range:  range, values: values)
+    @service.append_spreadsheet_value(spreadsheet_id, range, value_range_object, value_input_option: 'RAW')
+  end
+
+  def authorize
+    @service = Google::Apis::SheetsV4::SheetsService.new
+    @service.authorization = google_secret.to_authorization
+    @service.authorization.refresh!
   end
 end
