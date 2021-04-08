@@ -25,6 +25,6 @@ class SpreadsheetJobWorker
     end
     return if result[:result].length == 0
     data = job.replace_sheet? ? ([result[:columns]] + result[:result]) : result[:result]
-    cw.append_data(data)
+    sw.append_data(job.spreadsheet.g_id, "#{job.target_sheet}!A1", data)
   end
 end

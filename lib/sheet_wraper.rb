@@ -32,7 +32,7 @@ class SheetWraper
 
   def append_data(spreadsheet_id, range, values)
     value_range = Google::Apis::SheetsV4::ValueRange.new(values: values)
-    result = @service.append_spreadsheet_value(spreadsheet_id, range, value_range, value_input_option: 'RAW')
+    result = @service.append_spreadsheet_value(spreadsheet_id, range, value_range, value_input_option: 'RAW', insert_data_option: 'INSERT_ROWS')
   end
 
   def sheet_exists?(spreadsheet_id, sheet_name)
@@ -41,7 +41,7 @@ class SheetWraper
   end
 
   def clear_sheet(spreadsheet_id, sheet_name)
-    @service.clear_values(spreadsheet_id, sheet_name)
+    @service.clear_values(spreadsheet_id, "#{sheet_name}!A1:Z1000")
   end
 
   def get_sheet_info(spreadsheet_id)
