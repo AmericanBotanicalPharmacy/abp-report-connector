@@ -14,7 +14,7 @@ class SpreadsheetJobWorker
     return if database_source.nil?
     database_url = database_source.generate_database_url
     return if database_url.blank?
-    result = SqlExecutor.new(database_url, job.sql)
+    result = SqlExecutor.new(database_url, job.sql).execute
 
     sw = SheetWraper.new(job.spreadsheet.user)
     unless sw.sheet_exists?(job.spreadsheet.g_id, job.target_sheet)
@@ -23,8 +23,8 @@ class SpreadsheetJobWorker
     if job.replace_sheet?
       sw.clear_sheet(job.spreadsheet.g_id, job.target_sheet)
     end
-    return if result.rows.length == 0
-    data = job.replace_sheet? ? ([result.columns] + result.rows) : result.rows
+    return if result[:result].length == 0
+    data = job.replace_sheet? ? ([result[:columns]] + result[:result]) : result[:result]
     cw.append_data(data)
   end
 end
