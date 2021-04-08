@@ -39,6 +39,32 @@ class SheetWraper
     @service.append_spreadsheet_value(spreadsheet_id, range, value_range_object, value_input_option: 'RAW')
   end
 
+  def sheet_exists?(spreadsheet_id, sheet_name)
+    info = get_sheet_info(spreadsheet_id)
+    !!info.sheets.find{|s| s.properties.title == sheet_name }
+  end
+
+  def clear_sheet(spreadsheet_id, sheet_name)
+    @service.clear_values(spreadsheet_id, sheet_name)
+  end
+
+  def get_sheet_info(spreadsheet_id)
+    @service.get_spreadsheet(spreadsheet_id)
+  end
+
+  def add_sheet(spreadsheet_id, sheet_name)
+    add_sheet_request = Google::Apis::SheetsV4::AddSheetRequest.new
+    add_sheet_request.properties = Google::Apis::SheetsV4::SheetProperties.new
+    add_sheet_request.properties.title = sheet_name
+
+    batch_update_spreadsheet_request = Google::Apis::SheetsV4::BatchUpdateSpreadsheetRequest.new
+    batch_update_spreadsheet_request.requests = Google::Apis::SheetsV4::Request.new
+
+    batch_update_spreadsheet_request_object = [ add_sheet: add_sheet_request ]
+    batch_update_spreadsheet_request.requests = batch_update_spreadsheet_request_object
+    response = service.batch_update_spreadsheet(spreadsheet_id, batch_update_spreadsheet_request)
+  end
+
   def authorize
     @service = Google::Apis::SheetsV4::SheetsService.new
     @service.authorization = google_secret.to_authorization
