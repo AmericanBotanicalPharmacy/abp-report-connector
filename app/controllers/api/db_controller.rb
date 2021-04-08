@@ -14,28 +14,7 @@ module Api
         render json: { error: 'DB not available' }, status: :bad_request
         return
       end
-      conn = DbConnectionFactory.create(database_url)
-      result = conn.exec_query(params[:sql])
-      if conn.is_a?(ActiveRecord::ConnectionAdapters::SQLServerAdapter)
-        if result.count > 0
-          columns = result[0].keys
-          result = result.map { |r| columns.map { |c| r[c]} }
-          render json: {
-            result: result,
-            columns: columns
-          }
-        else
-          render json: {
-            result: [],
-            columns: []
-          }
-        end
-      else
-        render json: {
-          result: result.rows,
-          columns: result.columns
-        }
-      end
+      render json: SqlExecutor.new(database_url, params[:sql]).execute
     rescue => e
       render json: {
         error: (database_source.password.present? ? e.message.to_s.gsub("#{database_source.password}", '******') : e.message)
