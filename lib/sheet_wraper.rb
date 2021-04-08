@@ -31,12 +31,8 @@ class SheetWraper
   end
 
   def append_data(spreadsheet_id, range, values)
-    data = [
-      range: range,
-      values: values
-    ]
-    value_range_object = Google::Apis::SheetsV4::ValueRange.new(range:  range, values: values)
-    @service.append_spreadsheet_value(spreadsheet_id, range, value_range_object, value_input_option: 'RAW')
+    value_range = Google::Apis::SheetsV4::ValueRange.new(values: values)
+    result = @service.append_spreadsheet_value(spreadsheet_id, range, value_range, value_input_option: 'RAW')
   end
 
   def sheet_exists?(spreadsheet_id, sheet_name)
@@ -62,7 +58,7 @@ class SheetWraper
 
     batch_update_spreadsheet_request_object = [ add_sheet: add_sheet_request ]
     batch_update_spreadsheet_request.requests = batch_update_spreadsheet_request_object
-    response = service.batch_update_spreadsheet(spreadsheet_id, batch_update_spreadsheet_request)
+    response = @service.batch_update_spreadsheet(spreadsheet_id, batch_update_spreadsheet_request)
   end
 
   def authorize

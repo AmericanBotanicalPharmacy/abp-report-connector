@@ -28,4 +28,10 @@ class SpreadsheetJob < ApplicationRecord
   rescue
     nil
   end
+
+  def replace_sheet?
+    JSON.parse(options)['renderType'] == 'replace'
+  rescue
+    false
+  end
 end
