@@ -3,7 +3,7 @@ include SendGrid
 require 'json'
 
 class MessageHandler
-  attr_accessor :title, :subject, :recipients, :content, :ss_id, :sheet_id, :oauth_token, :sheet_name, :phones
+  attr_accessor :title, :subject, :recipients, :content, :ss_id, :sheet_id, :oauth_token, :sheet_name, :phones, :csv_data
 
   def initialize(options={})
     @title = options[:title]
@@ -15,6 +15,7 @@ class MessageHandler
     @oauth_token = options[:oauth_token]
     @sheet_name = options[:sheet_name]
     @phones = options[:phones] || []
+    @csv_data = options[:csv_data]
   end
 
   def deliver
@@ -41,12 +42,19 @@ class MessageHandler
   end
 
   def generate_attachment
-    body = download_sheet_file
     attachment = SendGrid::Attachment.new
-    attachment.content = Base64.strict_encode64(body)
-    attachment.type = 'application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet'
-    attachment.filename = "#{@sheet_name}.xlsx"
-    attachment.disposition = 'attachment'
+    if @csv_data
+      attachment.content = Base64.strict_encode64(@csv_data)
+      attachment.type = 'text/csv'
+      attachment.filename = "#{@sheet_name}.csv"
+      attachment.disposition = 'attachment'
+    else
+      body = download_sheet_file
+      attachment.content = Base64.strict_encode64(body)
+      attachment.type = 'application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet'
+      attachment.filename = "#{@sheet_name}.xlsx"
+      attachment.disposition = 'attachment'
+    end
     attachment.content_id = 'Report sheet'
     attachment
   end
