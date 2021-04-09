@@ -28,19 +28,23 @@ ActiveRecord::Schema.define(version: 2021_04_09_014634) do
   end
 
   create_table "job_notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "spreadsheet_id", null: false
     t.bigint "spreadsheet_job_id", null: false
     t.integer "notify_type"
+    t.integer "row_index"
     t.integer "row_number"
     t.string "emails"
     t.string "phones"
     t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["spreadsheet_id"], name: "index_job_notifications_on_spreadsheet_id"
     t.index ["spreadsheet_job_id"], name: "index_job_notifications_on_spreadsheet_job_id"
   end
 
   create_table "spreadsheet_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "spreadsheet_id", null: false
+    t.integer "row_index"
     t.integer "row_number"
     t.text "sql"
     t.string "name"
@@ -71,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_04_09_014634) do
   end
 
   add_foreign_key "job_notifications", "spreadsheet_jobs"
+  add_foreign_key "job_notifications", "spreadsheets"
   add_foreign_key "spreadsheet_jobs", "spreadsheets"
   add_foreign_key "spreadsheets", "users"
 end

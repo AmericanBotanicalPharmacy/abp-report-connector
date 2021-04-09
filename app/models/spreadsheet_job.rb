@@ -1,5 +1,6 @@
 class SpreadsheetJob < ApplicationRecord
   belongs_to :spreadsheet
+  has_many :job_notifications
 
   before_destroy :remove_in_sidekiq_cron
 
