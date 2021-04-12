@@ -9,6 +9,8 @@ class SpreadsheetJobWorker
     execute_job(job)
   end
 
+  VALUE_REGEX = /\![A-Z]{1,}\d{1,}(?:\:[A-Z]{1,}\d{1,})?/
+
   def execute_job(job)
     database_source = job.spreadsheet.user.sources.find_by(name: job.db_config)
     return if database_source.nil?
@@ -35,7 +37,20 @@ class SpreadsheetJobWorker
       next if notification.notify_type == 'number_data' && data_count < notification.row_number
 
       subject = "Sheet #{job.target_sheet} updated."
-      content = "Your sheet (#{job.target_sheet}) have been updated by job: #{job.name}"
+      content = if notification.message.blank?
+        "Your sheet (#{job.target_sheet}) have been updated by job: #{job.name}"
+      else
+        if notification.message =~ VALUE_REGEX
+          values = sw.get_values(job.spreadsheet.g_id, notification.message.scan(VALUE_REGEX).map{|range| "#{job.target_sheet}!#{range}"})
+          _message = notification.message.clone
+          values.each do |range, value|
+            _message = _.message.gsub(range.split('!').last, value)
+          end
+          _message
+        else
+          notification.message
+        end
+      end
       emails = notification.emails_to_notify
       phones = notification.phones_to_notify
       sheet_name = job.target_sheet
@@ -57,5 +72,4 @@ class SpreadsheetJobWorker
       ).deliver
     end
   end
-
 end

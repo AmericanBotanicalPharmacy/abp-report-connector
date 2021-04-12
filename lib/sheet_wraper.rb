@@ -50,6 +50,11 @@ class SheetWraper
     @service.get_spreadsheet(spreadsheet_id)
   end
 
+  def get_values(spreadsheet_id, ranges)
+    res = @service.batch_get_spreadsheet_values(spreadsheet_id, ranges: ranges)
+    res.value_ranges
+  end
+
   def add_sheet(spreadsheet_id, sheet_name)
     add_sheet_request = Google::Apis::SheetsV4::AddSheetRequest.new
     add_sheet_request.properties = Google::Apis::SheetsV4::SheetProperties.new
