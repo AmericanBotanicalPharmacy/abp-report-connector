@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_04_09_014634) do
   create_table "job_notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "spreadsheet_id", null: false
     t.bigint "spreadsheet_job_id", null: false
-    t.integer "notify_type"
+    t.string "notify_type"
     t.integer "row_index"
     t.integer "row_number"
     t.string "emails"
