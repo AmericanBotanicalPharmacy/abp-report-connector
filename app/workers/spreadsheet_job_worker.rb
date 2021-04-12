@@ -41,10 +41,11 @@ class SpreadsheetJobWorker
         "Your sheet (#{job.target_sheet}) have been updated by job: #{job.name}"
       else
         if notification.message =~ VALUE_REGEX
-          values = sw.get_values(job.spreadsheet.g_id, notification.message.scan(VALUE_REGEX).map{|range| "#{job.target_sheet}!#{range}"})
+          values = sw.get_values(job.spreadsheet.g_id, notification.message.scan(VALUE_REGEX).map{|range| "#{job.target_sheet}#{range}"})
           _message = notification.message.clone
-          values.each do |range, value|
-            _message = _.message.gsub(range.split('!').last, value)
+          values.each do |value_range|
+            _values = value_range.values.flatten.join(' ') rescue ''
+            _message = _message.gsub("!#{value_range.range.split('!').last}", _values)
           end
           _message
         else
