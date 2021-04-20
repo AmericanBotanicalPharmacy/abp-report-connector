@@ -17,6 +17,7 @@ class SpreadsheetJobWorker
     database_url = database_source.generate_database_url
     return if database_url.blank?
     result = SqlExecutor.new(database_url, job.sql).execute
+    prepend_timestamp(result)
 
     sw = SheetWraper.new(job.spreadsheet.user)
     sheet_id = sw.sheet_id(job.spreadsheet.g_id, job.target_sheet)
@@ -71,6 +72,19 @@ class SpreadsheetJobWorker
         sheet_name: job.target_sheet,
         csv_data: csv_string
       ).deliver
+    end
+  end
+
+  def prepend_timestamp(result)
+    if result[:result].length > 0
+      result[:columns] = ['Timstamp'] + result[:columns]
+      result[:result].each_with_index do |item, i|
+        if i == 0
+          item.unshift(Time.zone.now.strftime('%F %H:%M:%S'))
+        else
+          item.unshift('')
+        end
+      end
     end
   end
 end
