@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     post 'db/run', to: 'db#run'
     post 'message/deliver', to: 'messages#deliver'
     post 'spreadsheets', to: 'spreadsheets#update'
+    post 'spreadsheets/sync', to: 'spreadsheets#sync'
     resources :sources, only: [:index, :create, :update, :destroy]
   end
 
