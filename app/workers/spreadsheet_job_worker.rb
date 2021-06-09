@@ -2,6 +2,7 @@ require 'sheet_wraper'
 
 class SpreadsheetJobWorker
   include Sidekiq::Worker
+  sidekiq_options retry: false
 
   def perform(job_id)
     job = SpreadsheetJob.find_by id: job_id

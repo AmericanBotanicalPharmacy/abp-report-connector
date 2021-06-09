@@ -2,6 +2,7 @@ require 'sheet_wraper'
 
 class SyncSpreadsheetWorker
   include Sidekiq::Worker
+  sidekiq_options retry: false
 
   def perform(spreadsheet_id)
     spreadsheet = Spreadsheet.find(spreadsheet_id)
