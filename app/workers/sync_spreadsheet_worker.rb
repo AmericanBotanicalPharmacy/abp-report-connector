@@ -35,8 +35,8 @@ class SyncSpreadsheetWorker
         spreadsheet_job: job,
         notify_type: notification_row['NOTIFY_TYPE'],
         row_number: notification_row['ROW_NUMBER'],
-        emails: notification_row['EMAILS'],
-        phones: notification_row['PHONES'],
+        emails: notification_row['EMAILs'],
+        phones: notification_row['PHONEs'],
         message: notification_row['MESSAGE']
       )
     end
