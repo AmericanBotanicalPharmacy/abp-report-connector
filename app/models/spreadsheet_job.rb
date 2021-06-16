@@ -21,7 +21,7 @@ class SpreadsheetJob < ApplicationRecord
   end
 
   def sidekiq_cron_name
-    "spreadsheet-#{spreadsheet_id}-job-#{row_number}"
+    "user-#{spreadsheet.user_id}-job-#{id}"
   end
 
   def cron
