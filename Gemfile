@@ -58,9 +58,9 @@ gem 'twilio-ruby', '~> 5.29.1'
 
 gem 'rest-client'
 
-gem 'devise'
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
+gem 'devise', '~> 4.7.3'
+gem 'omniauth', '~> 1.9.1'
+gem 'omniauth-google-oauth2', '~> 0.8.0'
 
 gem 'google-api-client'
 
