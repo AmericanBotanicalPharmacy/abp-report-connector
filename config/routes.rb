@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     resources :sources, only: [:index, :create, :update, :destroy]
   end
 
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == ENV['SIDEKIQ_USERNAME'] && password == ENV['SIDEKIQ_PASSWORD']
+  end
   mount Sidekiq::Web => "/sidekiq"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
