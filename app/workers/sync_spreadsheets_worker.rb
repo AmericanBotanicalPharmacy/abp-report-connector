@@ -6,8 +6,10 @@ class SyncSpreadsheetsWorker
 
   def perform
     User.find_each do |user|
+      i = 0
       user.spreadsheets.find_each do |spreadsheet|
-        SyncSpreadsheetWorker.new.sync(spreadsheet)
+        i += 10
+        SyncSpreadsheetWorker.perform_in(i.seconds, spreadsheet.id)
       end
     end
   end
