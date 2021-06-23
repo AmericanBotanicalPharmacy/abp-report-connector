@@ -66,3 +66,5 @@ gem 'google-api-client'
 
 gem 'sidekiq'
 gem "sidekiq-cron", "~> 1.1"
+gem 'sidekiq-failures'
+gem 'sidekiq-history'
