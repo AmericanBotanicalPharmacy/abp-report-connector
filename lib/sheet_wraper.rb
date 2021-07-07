@@ -60,7 +60,7 @@ class SheetWraper
 
     batch_update_spreadsheet_request_object = [ add_sheet: add_sheet_request ]
     batch_update_spreadsheet_request.requests = batch_update_spreadsheet_request_object
-    response = @service.batch_update_spreadsheet(spreadsheet_id, batch_update_spreadsheet_request)
+    res = @service.batch_update_spreadsheet(spreadsheet_id, batch_update_spreadsheet_request)
     res.replies.first.add_sheet.properties.sheet_id
   end
 
