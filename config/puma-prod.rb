@@ -24,7 +24,7 @@ shared_dir = "#{app_dir}/tmp"
 environment ENV.fetch("RAILS_ENV") { "production" }
 
 # Set up socket location
-bind "unix://#{shared_dir}/sockets/puma.sock"
+bind "unix:///var/run/sockets/puma.sock"
 
 # Logging
 stdout_redirect "#{shared_dir}/log/production.stdout.log", "#{shared_dir}/log/production.stderr.log", true
