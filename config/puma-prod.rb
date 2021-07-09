@@ -14,7 +14,7 @@ threads min_threads_count, max_threads_count
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-workers ENV.fetch("WEB_CONCURRENCY") { 1 }
+workers ENV.fetch("WEB_CONCURRENCY") { 0 }
 
 app_dir = File.expand_path("../..", __FILE__)
 shared_dir = "#{app_dir}/tmp"
