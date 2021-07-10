@@ -26,12 +26,9 @@ environment ENV.fetch("RAILS_ENV") { "production" }
 # Set up socket location
 bind "unix:///var/run/sockets/puma.sock"
 
-# Logging
-stdout_redirect "#{shared_dir}/log/production.stdout.log", "#{shared_dir}/log/production.stderr.log", true
 
 # Set master PID and state locations
 pidfile "#{shared_dir}/pids/puma.pid"
-state_path "#{shared_dir}/pids/puma.state"
 activate_control_app
 
 # Use the `preload_app!` method when specifying a `workers` number.
