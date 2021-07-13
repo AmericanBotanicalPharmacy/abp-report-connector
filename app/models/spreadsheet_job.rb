@@ -11,7 +11,8 @@ class SpreadsheetJob < ApplicationRecord
       sidekiq_cron_name => {
         'class' => 'SpreadsheetJobWorker',
         'cron' => cron,
-        'args' => [id]
+        'args' => [id],
+        'description' => sidekiq_description
       }
     })
   end
@@ -28,6 +29,10 @@ class SpreadsheetJob < ApplicationRecord
     JSON.parse(options)['cron']
   rescue
     nil
+  end
+
+  def sidekiq_description
+    "Doc: #{target_sheet} \n Job: #{name}"
   end
 
   def replace_sheet?
