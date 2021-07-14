@@ -3,12 +3,12 @@ class SpreadsheetJob < ApplicationRecord
   has_many :job_notifications
 
   before_destroy :remove_in_sidekiq_cron
+  before_update :remove_old_sideiq_job, if: -> { name_changed? }
 
   def update_sidekiq_cron
     return if cron.blank?
-    sidekiq_cron_name
     Sidekiq::Cron::Job.load_from_hash({
-      sidekiq_cron_name => {
+      sidekiq_cron_name(name) => {
         'class' => 'SpreadsheetJobWorker',
         'cron' => cron,
         'args' => [id],
@@ -21,8 +21,15 @@ class SpreadsheetJob < ApplicationRecord
     Sidekiq::Cron::Job.destroy sidekiq_cron_name
   end
 
-  def sidekiq_cron_name
-    "user-#{spreadsheet.user_id}-job-#{id}"
+  def sidekiq_cron_name(_name)
+    "user-#{spreadsheet.user_id}-job-#{id}-#{_name}"
+  end
+
+  def remove_old_sideiq_job
+    job_name = sidekiq_cron_name(name_was)
+    old_job = Sidekiq::Cron::Job.find(job_name)
+    old_job ||= Sidekiq::Cron::Job.find("user-#{spreadsheet.user_id}-job-#{id}")
+    old_job.destroy if old_job
   end
 
   def cron
