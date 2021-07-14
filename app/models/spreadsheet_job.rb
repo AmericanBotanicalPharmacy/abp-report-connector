@@ -22,7 +22,7 @@ class SpreadsheetJob < ApplicationRecord
   end
 
   def sidekiq_cron_name(_name)
-    "user-#{spreadsheet.user_id}-job-#{id}-#{_name}"
+    "user-#{spreadsheet.user_id}-job-#{id}-#{_name.parameterize}"
   end
 
   def remove_old_sideiq_job
