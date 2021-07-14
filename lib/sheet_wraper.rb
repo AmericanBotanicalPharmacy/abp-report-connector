@@ -27,7 +27,7 @@ class SheetWraper
 
   def append_data(spreadsheet_id, range, values)
     value_range = Google::Apis::SheetsV4::ValueRange.new(values: values)
-    result = @service.append_spreadsheet_value(spreadsheet_id, range, value_range, value_input_option: 'RAW', insert_data_option: 'INSERT_ROWS')
+    result = @service.append_spreadsheet_value(spreadsheet_id, range, value_range, value_input_option: 'RAW', insert_data_option: 'OVERWRITE')
   end
 
   def sheet_id(spreadsheet_id, sheet_name)
