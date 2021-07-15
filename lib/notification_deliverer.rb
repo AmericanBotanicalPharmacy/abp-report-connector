@@ -48,7 +48,6 @@ class NotificationDeliverer
       phones: phones,
       content: content,
       ss_id: job.spreadsheet.g_id,
-      sheet_id: sheet_id,
       oauth_token: job.spreadsheet.user.google_token,
       sheet_name: job.target_sheet,
       csv_data: csv_string
