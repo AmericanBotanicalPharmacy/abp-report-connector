@@ -37,7 +37,8 @@ class SyncSpreadsheetWorker
         row_number: notification_row['ROW_NUMBER'],
         emails: notification_row['EMAILs'],
         phones: notification_row['PHONEs'],
-        message: notification_row['MESSAGE']
+        message: notification_row['MESSAGE'],
+        cron: notification_row['CRON']
       )
     end
     spreadsheet.job_notifications.where('row_index > ?', notification_values.count).destroy_all

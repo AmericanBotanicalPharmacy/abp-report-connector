@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_014634) do
+ActiveRecord::Schema.define(version: 2021_07_15_003226) do
 
   create_table "database_sources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "db_type"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2021_04_09_014634) do
     t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "cron"
     t.index ["spreadsheet_id"], name: "index_job_notifications_on_spreadsheet_id"
     t.index ["spreadsheet_job_id"], name: "index_job_notifications_on_spreadsheet_job_id"
   end
