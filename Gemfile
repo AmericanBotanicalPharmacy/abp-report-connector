@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '2.7.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
@@ -47,13 +47,24 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails'
 
 gem 'tiny_tds', github: 'rails-sqlserver/tiny_tds'
-gem 'activerecord-sqlserver-adapter', github: 'rails-sqlserver/activerecord-sqlserver-adapter'
+gem 'activerecord-sqlserver-adapter'#, github: 'rails-sqlserver/activerecord-sqlserver-adapter'
 
 gem 'sendgrid-ruby'
 gem 'httparty'
 gem 'twilio-ruby', '~> 5.29.1'
 
 gem 'rest-client'
+
+gem 'devise', '~> 4.7.3'
+gem 'omniauth', '~> 1.9.1'
+gem 'omniauth-google-oauth2', '~> 0.8.0'
+
+gem 'google-api-client'
+
+gem 'sidekiq'
+gem "sidekiq-cron", "~> 1.1"
+gem 'sidekiq-failures'
+gem 'sidekiq-history'
