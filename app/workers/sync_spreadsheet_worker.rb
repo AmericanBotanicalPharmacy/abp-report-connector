@@ -26,7 +26,7 @@ class SyncSpreadsheetWorker
     end
     spreadsheet.spreadsheet_jobs.where('row_number > ?', values.count).destroy_all
 
-    notification_values = sw.fetch_sheet_data(spreadsheet.g_id, 'Notifications!A1:F20')
+    notification_values = sw.fetch_sheet_data(spreadsheet.g_id, 'Notifications!A1:G20')
     transform_values(notification_values).each_with_index do |notification_row, index|
       job_notification = spreadsheet.job_notifications.find_or_initialize_by(row_index: index)
       job = spreadsheet.spreadsheet_jobs.find_by(name: notification_row['JOB'])
