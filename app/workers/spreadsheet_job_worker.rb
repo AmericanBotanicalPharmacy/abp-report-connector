@@ -39,7 +39,7 @@ class SpreadsheetJobWorker
         data_count: data_count,
         sheet_wraper: sw,
         data: ([result[:columns]] + result[:result])
-      )
+      ).deliver
     end
   end
 

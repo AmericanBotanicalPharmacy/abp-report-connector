@@ -5,11 +5,11 @@ class NotificationDeliverer
 
   def new(attrs={})
     @notification = attrs[:notification]
+    @spreadsheet = @notification.spreadsheet
     @data_count = attrs[:data_count]
     @sheet_wraper = attrs[:sheet_wraper] || SheetWraper.new(@spreadsheet.user)
     @data = attrs[:data]
     @job = @notification.spreadsheet_job
-    @spreadsheet = @notification.spreadsheet
   end
 
   VALUE_REGEX = /\![A-Z]{1,}\d{1,}(?:\:[A-Z]{1,}\d{1,})?/
