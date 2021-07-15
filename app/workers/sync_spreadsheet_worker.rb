@@ -40,6 +40,7 @@ class SyncSpreadsheetWorker
         message: notification_row['MESSAGE'],
         cron: notification_row['CRON']
       )
+      job_notification.update_sidekiq_cron
     end
     spreadsheet.job_notifications.where('row_index > ?', notification_values.count).destroy_all
   end
