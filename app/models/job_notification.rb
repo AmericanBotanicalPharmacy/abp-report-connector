@@ -21,7 +21,7 @@ class JobNotification < ApplicationRecord
   def update_sidekiq_cron
     return if cron.blank?
     Sidekiq::Cron::Job.load_from_hash({
-      sidekiq_cron_name(name) => {
+      sidekiq_cron_name => {
         'class' => 'JobNotificationWorker',
         'cron' => cron,
         'args' => [id]
