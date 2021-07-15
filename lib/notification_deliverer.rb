@@ -3,7 +3,7 @@ require 'sheet_wraper'
 class NotificationDeliverer
   attr_accessor :notification, :job, :spreadsheet, :sheet_wraper, :data_count, :data
 
-  def new(attrs={})
+  def initialize(attrs={})
     @notification = attrs[:notification]
     @spreadsheet = @notification.spreadsheet
     @data_count = attrs[:data_count]
