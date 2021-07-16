@@ -109,8 +109,6 @@ yarn-debug.log*
 coverage
 
 
--# Ignore master key for decrypting credentials and more.
+# Ignore master key and encryped credentials.
 config/master.key
-
-
-/config/master.key
+config/credentials.yml.enc
