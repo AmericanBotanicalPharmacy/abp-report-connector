@@ -51,7 +51,8 @@ class SyncSpreadsheetWorker
         spreadsheet_job: job,
         emails: scheduled_notification_row['EMAILs'],
         phones: scheduled_notification_row['PHONEs'],
-        message: scheduled_notification_row['MESSAGE']
+        message: scheduled_notification_row['MESSAGE'],
+        cron: scheduled_notification_row['CRON']
       )
       scheduled_notification.update_sidekiq_cron
     end
