@@ -15,8 +15,8 @@ class NotificationDeliverer
   VALUE_REGEX = /\![A-Z]{1,}\d{1,}(?:\:[A-Z]{1,}\d{1,})?/
 
   def deliver
-    return if data_count == 0 && notification.notify_type == 'new_data'
-    return if notification.notify_type == 'number_data' && data_count < notification.row_number
+    return if notification.respond_to?(:notify_type) && data_count == 0 && notification.notify_type == 'new_data'
+    return if notification.respond_to?(:notify_type) && notification.notify_type == 'number_data' && data_count < notification.row_number
 
     subject = "Sheet #{job.target_sheet} updated."
     content = if notification.message.blank?
