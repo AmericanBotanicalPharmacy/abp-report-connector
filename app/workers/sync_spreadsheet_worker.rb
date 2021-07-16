@@ -41,6 +41,20 @@ class SyncSpreadsheetWorker
       )
     end
     spreadsheet.job_notifications.where('row_index > ?', notification_values.count).destroy_all
+
+    scheduled_notification_values = sw.fetch_sheet_data(spreadsheet.g_id, 'Scheduled Notifications!A1:E20')
+    transform_values(scheduled_notification_values).each_with_index do |scheduled_notification_row, index|
+      scheduled_notification = spreadsheet.scheduled_notifications.find_or_initialize_by(row_index: index)
+      job = spreadsheet.spreadsheet_jobs.find_by(name: scheduled_notification_row['JOB'])
+      next if job.nil?
+      scheduled_notification.update(
+        spreadsheet_job: job,
+        emails: scheduled_notification_row['EMAILs'],
+        phones: scheduled_notification_row['PHONEs'],
+        message: scheduled_notification_row['MESSAGE']
+      )
+    end
+    spreadsheet.scheduled_notifications.where('row_index > ?', scheduled_notification_values.count).destroy_all
   end
 
   def transform_values(values)
