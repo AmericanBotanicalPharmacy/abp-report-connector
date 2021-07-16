@@ -53,6 +53,7 @@ class SyncSpreadsheetWorker
         phones: scheduled_notification_row['PHONEs'],
         message: scheduled_notification_row['MESSAGE']
       )
+      scheduled_notification.update_sidekiq_cron
     end
     spreadsheet.scheduled_notifications.where('row_index > ?', scheduled_notification_values.count).destroy_all
   end
