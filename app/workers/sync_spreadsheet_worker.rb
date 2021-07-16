@@ -26,7 +26,7 @@ class SyncSpreadsheetWorker
     end
     spreadsheet.spreadsheet_jobs.where('row_number > ?', values.count).destroy_all
 
-    notification_values = sw.fetch_sheet_data(spreadsheet.g_id, 'Notifications!A1:G20')
+    notification_values = sw.fetch_sheet_data(spreadsheet.g_id, 'Notifications!A1:F20')
     transform_values(notification_values).each_with_index do |notification_row, index|
       job_notification = spreadsheet.job_notifications.find_or_initialize_by(row_index: index)
       job = spreadsheet.spreadsheet_jobs.find_by(name: notification_row['JOB'])
@@ -37,10 +37,8 @@ class SyncSpreadsheetWorker
         row_number: notification_row['ROW_NUMBER'],
         emails: notification_row['EMAILs'],
         phones: notification_row['PHONEs'],
-        message: notification_row['MESSAGE'],
-        cron: notification_row['CRON']
+        message: notification_row['MESSAGE']
       )
-      job_notification.update_sidekiq_cron
     end
     spreadsheet.job_notifications.where('row_index > ?', notification_values.count).destroy_all
   end

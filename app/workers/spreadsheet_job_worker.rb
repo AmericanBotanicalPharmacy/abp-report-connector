@@ -33,7 +33,7 @@ class SpreadsheetJobWorker
     end
 
     data_count = result[:result].length
-    job.job_notifications.where(cron: [nil, '']).each do |notification|
+    job.job_notifications.each do |notification|
       NotificationDeliverer.new(
         notification: notification,
         data_count: data_count,
