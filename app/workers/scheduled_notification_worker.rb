@@ -9,7 +9,7 @@ class ScheduledNotificationWorker
     notification = ScheduledNotification.find(scheduled_notification_id)
     sw = SheetWraper.new(notification.spreadsheet.user)
     res = sw.get_values(notification.spreadsheet.g_id, notification.spreadsheet_job.target_sheet)
-    data = res.first.values
+    data = res.first.values || []
     NotificationDeliverer.new({
       notification: notification,
       data_count: data.length,
