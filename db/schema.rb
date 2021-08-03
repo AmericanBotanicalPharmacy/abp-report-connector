@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_061507) do
+ActiveRecord::Schema.define(version: 2021_08_03_075354) do
 
   create_table "database_sources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "db_type"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_061507) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["user_id"], name: "index_spreadsheets_on_user_id"
   end
 
