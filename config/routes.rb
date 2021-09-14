@@ -4,6 +4,8 @@ require 'sidekiq/cron/web'
 Rails.application.routes.draw do
   root to: 'home#index'
 
+  get '/privacy-policy', to: 'home#privacy_policy'
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     get 'users/sign_in', to: 'users/sessions#new', as: :new_user_session
