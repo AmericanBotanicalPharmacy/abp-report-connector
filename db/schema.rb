@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_03_075354) do
+ActiveRecord::Schema.define(version: 2021_10_11_093856) do
 
   create_table "database_sources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "db_type"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_08_03_075354) do
     t.text "options"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
     t.index ["spreadsheet_id"], name: "index_spreadsheet_jobs_on_spreadsheet_id"
   end
 
