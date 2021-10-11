@@ -23,7 +23,8 @@ class SyncSpreadsheetWorker
         sql: job_row['SQL'],
         target_sheet: job_row['TARGET SHEET'],
         db_config: job_row['DB_CONFIG'],
-        options: job_row['OPTIONS']
+        options: job_row['OPTIONS'],
+        status: job_row['STATUS']
       )
       job.update_sidekiq_cron
     end
