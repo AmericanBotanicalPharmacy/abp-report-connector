@@ -8,6 +8,7 @@ class SpreadsheetJobWorker
   def perform(job_id)
     job = SpreadsheetJob.find_by id: job_id
     return if job.nil?
+    return if job.status.strip.downcase == 'disabled'
     execute_job(job)
   end
 
