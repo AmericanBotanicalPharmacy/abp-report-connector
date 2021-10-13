@@ -15,7 +15,7 @@ class SyncSpreadsheetWorker
     sheet_info = sw.get_sheet_info(spreadsheet.g_id)
     spreadsheet.update(name: sheet_info.properties.title)
     sheet_names = sheet_info.sheets.map {|s| s.properties.title }
-    values = sw.fetch_sheet_data(spreadsheet.g_id, 'Jobs!A1:E20')
+    values = sw.fetch_sheet_data(spreadsheet.g_id, 'Jobs!A1:F20')
     transform_values(values).each_with_index do |job_row, index|
       job = spreadsheet.spreadsheet_jobs.find_or_initialize_by(row_number: index)
       job.update(
