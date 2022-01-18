@@ -17,7 +17,8 @@ class SpreadsheetJobWorker
     return if database_source.nil?
     database_url = database_source.generate_database_url
     return if database_url.blank?
-    result = SqlExecutor.new(database_url, job.sql).execute
+    origin_result = SqlExecutor.new(database_url, job.sql).execute
+    result = origin_result.clone
     prepend_timestamp(result)
 
     sw = SheetWraper.new(job.spreadsheet.user)
@@ -39,7 +40,7 @@ class SpreadsheetJobWorker
         notification: notification,
         data_count: data_count,
         sheet_wraper: sw,
-        data: ([result[:columns]] + result[:result])
+        data: ([origin_result[:columns]] + origin_result[:result])
       ).deliver
     end
   end
