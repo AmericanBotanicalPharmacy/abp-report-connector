@@ -37,20 +37,16 @@ class NotificationDeliverer
     emails = notification.emails_to_notify
     phones = notification.phones_to_notify
     sheet_name = job.target_sheet
-    csv_string = CSV.generate do |csv|
-      data.each do |r|
-        csv << r
-      end
-    end
+    sheet_id = sw.sheet_id(@job.spreadsheet.g_id, @job.target_sheet)
     MessageHandler.new(
       subject: subject,
       recipients: emails,
       phones: phones,
       content: content,
       ss_id: job.spreadsheet.g_id,
+      sheet_id: sheet_id,
       oauth_token: job.spreadsheet.user.google_token,
-      sheet_name: job.target_sheet,
-      csv_data: csv_string
+      sheet_name: job.target_sheet
     ).deliver
   end
 end

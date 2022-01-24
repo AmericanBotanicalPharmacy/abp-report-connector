@@ -10,7 +10,7 @@ class SpreadsheetDownloader
     response = HTTParty.get(url, headers: { 'authorization' => "Bearer #{@token}" })
     if response.code == 200
       File.open(file_path, "wb") do |file|
-        f.write response.body      
+        f.write response.body
       end
     end
   end
