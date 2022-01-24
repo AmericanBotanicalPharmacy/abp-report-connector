@@ -19,7 +19,7 @@ class SpreadsheetJobWorker
     return if database_url.blank?
     origin_result = SqlExecutor.new(database_url, job.sql).execute
     result = origin_result.clone
-    prepend_timestamp(result)
+    prepend_timestamp(result) if job.add_timestamp?
 
     sw = SheetWraper.new(job.spreadsheet.user)
     sheet_id = sw.sheet_id(job.spreadsheet.g_id, job.target_sheet)

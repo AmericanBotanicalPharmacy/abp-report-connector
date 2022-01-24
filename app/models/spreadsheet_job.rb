@@ -38,6 +38,12 @@ class SpreadsheetJob < ApplicationRecord
     nil
   end
 
+  def add_timestamp?
+    JSON.parse(options)['disableTimestamp'].blank?
+  rescue
+    true
+  end
+
   def sidekiq_description
     "Doc: #{target_sheet} \n Job: #{name}"
   end
