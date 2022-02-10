@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get 'users/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
   end
 
+  get '/account', to: 'account#index', as: :account
+
   namespace :api do
     get 'ping', to: 'ping#index'
     get 'me', to: 'users#me'
