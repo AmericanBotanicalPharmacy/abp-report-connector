@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AbpReportConnector</title>
+    <title>DB Connector</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -54,60 +54,52 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+        <div class="col-md-6">
+          <img src="https://via.placeholder.com/450" />
         </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <div class="col-md-6">
+          <h2>Tightly integrated with the apps your team depends on</h2>
+          <p>Connect to Postgres, MySQL, Snowflake, Redshift, and SQL Server. Send data where your team needs it like Google Sheets, Excel, Slack and email.</p>
           <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
         </div>
       </div>
 
-      <hr>
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <h2>Your team's SQL repository</h2>
+          <p>Share, tag, and discover code written by anyone on your team. Never re-write code someone else has already perfected. </p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+        </div>
+        <div class="col-md-6">
+          <img src="https://via.placeholder.com/450" />
+        </div>
+      </div>
 
+      <h4 class="mt-5">FAQ</h4>
+      <table class="table mt-5">
+        <tbody>
+          <tr>
+            <th scope="row">What databases do you support?</th>
+            <td>MySQL, Postgres, Redshift, MS SQL Server, and Snowflake. You can also query Google Sheets, Excel and CSV files just like they were SQL tables. You can even query cross database and files (e.g. join a Google Sheet, Postgres table and MySQL table).</td>
+          </tr>
+          <tr>
+            <th scope="row">How much does DB Connector cost?</th>
+            <td>Free during beta.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="container">
       <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
-          <div class="col-12 col-md">
+          <div class="col-md-2 col-md">
             <small class="d-block mb-3 text-muted">© 2022</small>
           </div>
-          <div class="col-6 col-md">
-            <h5>Features</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Cool stuff</a></li>
-              <li><a class="text-muted" href="#">Random feature</a></li>
-              <li><a class="text-muted" href="#">Team feature</a></li>
-              <li><a class="text-muted" href="#">Stuff for developers</a></li>
-              <li><a class="text-muted" href="#">Another one</a></li>
-              <li><a class="text-muted" href="#">Last time</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md">
-            <h5>Resources</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Resource</a></li>
-              <li><a class="text-muted" href="#">Resource name</a></li>
-              <li><a class="text-muted" href="#">Another resource</a></li>
-              <li><a class="text-muted" href="#">Final resource</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md">
-            <h5>About</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Team</a></li>
-              <li><a class="text-muted" href="#">Locations</a></li>
-              <li><a class="text-muted" href="#">Privacy</a></li>
-              <li><a class="text-muted" href="#">Terms</a></li>
+          <div class="col-md-6 col-md">
+            <ul class="list-unstyled text-small list-inline">
+              <li class="list-inline-item"><a class="text-muted" href="/privacy-policy">Privacy</a></li>
+              <li class="list-inline-item"><a class="text-muted" href="#">Terms</a></li>
             </ul>
           </div>
         </div>
