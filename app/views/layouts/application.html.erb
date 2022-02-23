@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AbpReportConnector</title>
+    <title>DB Connector</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -23,6 +23,9 @@
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Databases</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Spreadsheets</a>
@@ -48,6 +51,21 @@
       <% end %>
       <%= yield %>
       <!-- Content here -->
+    </div>
+    <div class="container">
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-md-2 col-md">
+            <small class="d-block mb-3 text-muted">© 2022</small>
+          </div>
+          <div class="col-md-6 col-md">
+            <ul class="list-unstyled text-small list-inline">
+              <li class="list-inline-item"><a class="text-muted" href="/privacy-policy">Privacy</a></li>
+              <li class="list-inline-item"><a class="text-muted" href="#">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </div>
   </body>
 </html>

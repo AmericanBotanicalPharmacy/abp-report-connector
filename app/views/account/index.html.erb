@@ -1,12 +1,45 @@
-<div class="container mt-2">
-  <h4>Hi <%= current_user.name %>, here is your spreadsheets.</h4>
-  <ul class="list-group">
-    <% if current_user.spreadsheets.present? %>
-      <% current_user.spreadsheets.each do |spreadsheet| %>
-        <li class="list-group-item"><%= spreadsheet.g_id %>  <%= spreadsheet.name %></li>
+<div class="container mt-5" id="account-wraper">
+  <h4>Spreadsheets.</h4>
+  <% if current_user.spreadsheets.present? %>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Download</th>
+      </tr>
+      <% current_user.spreadsheets.limit(5).each do |spreadsheet| %>
+        <tr>
+          <td><%= spreadsheet.name %></td>
+          <td><%= spreadsheet.g_id %></td>
+          <td></td>
+        </tr>
       <% end %>
-    <% else %>
-      <li class="list-group-item">You don't have any spreadsheets</li>
-    <% end %>
-  </ul>
+    </table>
+    <a href="#" class="mt-5">View All Spreadsheets</a>
+  <% else %>
+    <p>You have no spreadsheets. <a href="#">Create One Now</a></p>
+  <% end %>
+
+  <h4>Databases</h4>
+  <% if current_user.sources.present? %>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Host</th>
+        <th>Username</th>
+        <th>Port</th>
+      </tr>
+      <% current_user.sources.limit(5).each do |source| %>
+        <tr>
+          <td><%= source.name %></td>
+          <td><%= source.host %></td>
+          <td><%= source.username %></td>
+          <td><%= source.port %></td>
+        </tr>
+      <% end %>
+    </table>
+    <a href="#" class="mt-5">View All Databases</a>
+  <% else %>
+    <p>You have no databases. <a href="#">Create One Now</a></p>
+  <% end %>
 </div>
