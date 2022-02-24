@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <h4>Report Jobs</h4>
+  <table class="table mt-5">
+    <tr>
+      <th>Name</th>
+      <th>SQL</th>
+      <th>Target Sheet</th>
+      <th>DB Config</th>
+      <th>Options</th>
+    </tr>
+    <% @spreadsheet_jobs.each do |spreadsheet_job| %>
+      <tr>
+        <td><%= spreadsheet_job.name %></td>
+        <td><%= spreadsheet_job.sql %></td>
+        <td><%= spreadsheet_job.target_sheet %></td>
+        <td><%= spreadsheet_job.db_config %></td>
+        <td><%= spreadsheet_job.options %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
