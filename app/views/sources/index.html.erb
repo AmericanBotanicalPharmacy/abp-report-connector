@@ -1,5 +1,6 @@
 <div class="container mt-5">
   <h4>Databases</h4>
+  <%= link_to 'Create', new_source_path, class: 'btn btn-sm btn-primary' %>
   <table class="table mt-5">
     <tr>
       <th>Name</th>
@@ -8,6 +9,7 @@
       <th>Database Name</th>
       <th>Username</th>
       <th>Port</th>
+      <th></th>
     </tr>
     <% @sources.each do |source| %>
       <tr>
@@ -17,6 +19,7 @@
         <td><%= source.database %></td>
         <td><%= source.username %></td>
         <td><%= source.port %></td>
+        <td><%= link_to 'Edit', edit_source_path(source), class: 'btn btn-sm btn-primary' %></td>
       </tr>
     <% end %>
   </table>
