@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   get '/account', to: 'account#index', as: :account
+  resources :spreadsheets, only: [:index]
 
   namespace :api do
     get 'ping', to: 'ping#index'

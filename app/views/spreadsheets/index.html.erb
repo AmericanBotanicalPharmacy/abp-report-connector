@@ -1,0 +1,17 @@
+<div class="container mt-5">
+  <h4>Spreadsheets</h4>
+  <table class="table mt-5">
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+    <% @spreadsheets.each do |spreadsheet| %>
+      <tr>
+        <td><%= spreadsheet.name %></td>
+        <td>
+          <%= link_to 'View In Google Sheet', "https://docs.google.com/spreadsheets/d/#{spreadsheet.g_id}", class: 'btn btn-default', target: '_blank' %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
