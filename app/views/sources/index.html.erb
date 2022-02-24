@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h4>Databases</h4>
+  <table class="table mt-5">
+    <tr>
+      <th>Name</th>
+      <th>DB TYPE</th>
+      <th>HOST</th>
+      <th>Database Name</th>
+      <th>Username</th>
+      <th>Port</th>
+    </tr>
+    <% @sources.each do |source| %>
+      <tr>
+        <td><%= source.name %></td>
+        <td><%= source.db_type %></td>
+        <td><%= source.host %></td>
+        <td><%= source.database %></td>
+        <td><%= source.username %></td>
+        <td><%= source.port %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
