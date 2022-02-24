@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get '/account', to: 'account#index', as: :account
   resources :spreadsheets, only: [:index]
+  resources :spreadsheet_jobs, only: [:index]
   resources :sources, only: [:index]
 
   namespace :api do
