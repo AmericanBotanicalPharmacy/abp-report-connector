@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :sources, class_name: 'DatabaseSource'
   has_many :spreadsheets
   has_many :spreadsheet_jobs, through: :spreadsheets
+  has_many :job_notifications, through: :spreadsheets
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
