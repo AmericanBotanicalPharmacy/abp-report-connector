@@ -1,6 +1,6 @@
 <div class="container mt-5">
-  <h4>Create Database</h4>
-  <%= form_for @source, url: sources_path do |f| %>
+  <h4>Edit Database</h4>
+  <%= form_for @source, url: source_path(@source) do |f| %>
     <%= render partial: 'form', locals: { f: f} %>
   <% end %>
 </div>
