@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h4>Notifications</h4>
+  <table class="table mt-5">
+    <tr>
+      <th>Spreadsheet</th>
+      <th>NOTIFY TYPE</th>
+      <th>ROW_NUMBER</th>
+      <th>Emails</th>
+      <th>Phones</th>
+      <th>message</th>
+    </tr>
+    <% @job_notifications.each do |job_notification| %>
+      <tr>
+        <td><%= job_notification.spreadsheet.name %></td>
+        <td><%= job_notification.notify_type %></td>
+        <td><%= job_notification.row_number %></td>
+        <td><%= job_notification.emails %></td>
+        <td><%= job_notification.phones %></td>
+        <td><%= job_notification.message %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
