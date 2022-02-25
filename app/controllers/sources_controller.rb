@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class SourcesController < ApplicationController
   before_action :authenticate_user!
 
@@ -10,12 +12,13 @@ class SourcesController < ApplicationController
   end
 
   def create
-    @source = DatabaseSource.new(source_params)
+    @source = current_user.sources.new(source_params.merge(uuid: SecureRandom.uuid))
     if @source.save
       flash[:notice] = 'Successfully create database'
       redirect_to sources_path
     else
-      render :create
+      flash[:error] = @source.errors.full_messages.join(',')
+      render :new
     end
   end
 
