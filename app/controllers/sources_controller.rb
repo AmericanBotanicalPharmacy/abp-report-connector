@@ -22,6 +22,21 @@ class SourcesController < ApplicationController
     end
   end
 
+  def edit
+    @source = current_user.sources.find(params[:id])
+  end
+
+  def update
+    @source = current_user.sources.find(params[:id])
+    if @source.update(source_params)
+      flash[:notice] = 'Successfully update database'
+      redirect_to sources_path
+    else
+      flash[:error] = @source.errors.full_messages.join(',')
+      render :edit
+    end
+  end
+
   private
 
   def source_params
