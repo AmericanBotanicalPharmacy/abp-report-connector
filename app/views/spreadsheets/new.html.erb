@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <h4>Create Spreadsheet</h4>
+  <%= form_for @spreadsheet, url: spreadsheets_path do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Name</label>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label>Google sheet id</label>
+          <%= f.text_field :g_id, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  <% end %>
+</div>
