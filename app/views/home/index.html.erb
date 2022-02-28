@@ -1,111 +1,49 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>DB Connector</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">SQL in the apps you already use</h1>
+    <p class="lead text-muted">Get your SQL data in the places you need it like Google Sheets.</p>
+    <p>
+      <a href="#" class="btn btn-primary my-2">Start Free</a>
+      <a href="#" class="btn btn-secondary my-2">Book a demo</a>
+    </p>
+  </div>
+</section>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <a class="navbar-brand" href="#">DB Connector</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <%= link_to user_google_oauth2_omniauth_authorize_path do %>
-                  <%= image_tag 'btn_google_signin_dark_focus_web@2x.png', width: 191 %>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">SQL in the apps you already use</h1>
-        <p class="lead text-muted">Get your SQL data in the places you need it like Google Sheets.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Start Free</a>
-          <a href="#" class="btn btn-secondary my-2">Book a demo</a>
-        </p>
-      </div>
-    </section>
-
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-6">
-          <img src="https://via.placeholder.com/450" />
-        </div>
-        <div class="col-md-6">
-          <h2>Tightly integrated with the apps your team depends on</h2>
-          <p>Connect to Postgres, MySQL, Snowflake, Redshift, and SQL Server. Send data where your team needs it like Google Sheets, Excel, Slack and email.</p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-        </div>
-      </div>
-
-      <div class="row mt-5">
-        <div class="col-md-6">
-          <h2>Your team's SQL repository</h2>
-          <p>Share, tag, and discover code written by anyone on your team. Never re-write code someone else has already perfected. </p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-        </div>
-        <div class="col-md-6">
-          <img src="https://via.placeholder.com/450" />
-        </div>
-      </div>
-
-      <h4 class="mt-5">FAQ</h4>
-      <table class="table mt-5">
-        <tbody>
-          <tr>
-            <th scope="row">What databases do you support?</th>
-            <td>MySQL, Postgres, Redshift, MS SQL Server, and Snowflake. You can also query Google Sheets, Excel and CSV files just like they were SQL tables. You can even query cross database and files (e.g. join a Google Sheet, Postgres table and MySQL table).</td>
-          </tr>
-          <tr>
-            <th scope="row">How much does DB Connector cost?</th>
-            <td>Free during beta.</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-6">
+      <img src="https://via.placeholder.com/450" />
     </div>
-
-    <div class="container">
-      <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
-          <div class="col-md-2 col-md">
-            <small class="d-block mb-3 text-muted">© 2022</small>
-          </div>
-          <div class="col-md-6 col-md">
-            <ul class="list-unstyled text-small list-inline">
-              <li class="list-inline-item"><a class="text-muted" href="/privacy-policy">Privacy</a></li>
-              <li class="list-inline-item"><a class="text-muted" href="#">Terms</a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+    <div class="col-md-6">
+      <h2>Tightly integrated with the apps your team depends on</h2>
+      <p>Connect to Postgres, MySQL, Snowflake, Redshift, and SQL Server. Send data where your team needs it like Google Sheets, Excel, Slack and email.</p>
+      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
     </div>
-  </body>
-</html>
+  </div>
 
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <h2>Your team's SQL repository</h2>
+      <p>Share, tag, and discover code written by anyone on your team. Never re-write code someone else has already perfected. </p>
+      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+    </div>
+    <div class="col-md-6">
+      <img src="https://via.placeholder.com/450" />
+    </div>
+  </div>
 
+  <h4 class="mt-5">FAQ</h4>
+  <table class="table mt-5">
+    <tbody>
+      <tr>
+        <th scope="row">What databases do you support?</th>
+        <td>MySQL, Postgres, Redshift, MS SQL Server, and Snowflake. You can also query Google Sheets, Excel and CSV files just like they were SQL tables. You can even query cross database and files (e.g. join a Google Sheet, Postgres table and MySQL table).</td>
+      </tr>
+      <tr>
+        <th scope="row">How much does DB Connector cost?</th>
+        <td>Free during beta.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
