@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :spreadsheet_jobs, only: [:index]
   resources :sources, only: [:index, :new, :create, :edit, :update]
   resources :job_notifications, only: [:index]
+  resources :scheduled_notifications, only: [:index]
 
   namespace :api do
     get 'ping', to: 'ping#index'

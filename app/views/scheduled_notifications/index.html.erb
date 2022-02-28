@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h4>CRON</h4>
+  <table class="table mt-5">
+    <tr>
+      <th>Spreadsheet</th>
+      <th>CRON</th>
+      <th>ROW INDEX</th>
+      <th>Emails</th>
+      <th>Phones</th>
+      <th>message</th>
+    </tr>
+    <% @scheduled_notifications.each do |scheduled_notification| %>
+      <tr>
+        <td><%= scheduled_notification.spreadsheet.name %></td>
+        <td><%= scheduled_notification.cron %></td>
+        <td><%= scheduled_notification.row_index %></td>
+        <td><%= scheduled_notification.emails %></td>
+        <td><%= scheduled_notification.phones %></td>
+        <td><%= scheduled_notification.message %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
