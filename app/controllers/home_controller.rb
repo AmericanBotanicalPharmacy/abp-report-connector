@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
+  layout 'home'
+
   def index
-    render layout: false
   end
 
   def privacy_policy
