@@ -15,6 +15,7 @@ class SpreadsheetsController < ApplicationController
       flash[:notice] = 'Successfully create spreadsheet'
       redirect_to spreadsheets_path
     else
+      flash[:error] = @spreadsheet.errors.full_messages.join(',')
       render :new
     end
   end
