@@ -12,23 +12,29 @@
 <div class="container">
   <!-- Example row of columns -->
   <div class="row">
-    <div class="col-md-6">
-      <%= image_tag 'sheets.png' %>
+    <div class="col-md-4">
+      <div class="card">
+        <%= image_tag 'sheets.png', class: 'card-image-top', width: 348 %>
+        <div class="card-body">
+          <h4>Generate sql result in your Google sheets.</h4>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6">
-      <p>Connect to MySQL, SQL Server. Send data where your team needs to Google Sheets.</p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+    <div class="col-md-4">
+      <div class="card">
+        <%= image_tag 'run_job_sql.png', class: 'card-image-top', width: 348 %>
+        <div class="card-body">
+          <h4>Your SQL repository in google sheets.</h4>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div id="features" class="row mt-5">
-    <div class="col-md-6">
-      <h2>Your team's SQL repository</h2>
-      <p>Share, tag, and discover code written by anyone on your team. Never re-write code someone else has already perfected. </p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-    </div>
-    <div class="col-md-6">
-      <%= image_tag 'run_job_sql.png' %>
+    <div class="col-md-4">
+      <div class="card">
+        <%= image_tag 'db_config.png', class: 'card-image-top', width: 348 %>
+        <div class="card-body">
+          <h4>Manage your Database Info in one place</h4>
+        </div>
+      </div>
     </div>
   </div>
 
