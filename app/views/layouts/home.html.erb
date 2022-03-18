@@ -30,8 +30,12 @@
             </ul>
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <%= link_to user_google_oauth2_omniauth_authorize_path do %>
-                  <%= image_tag 'btn_google_signin_dark_focus_web@2x.png', width: 191 %>
+                <% if current_user %>
+                  <a class="nav-link" href="/account">My Account</a>
+                <% else %>
+                  <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+                    <%= image_tag 'btn_google_signin_dark_focus_web@2x.png', width: 191 %>
+                  <% end %>
                 <% end %>
               </li>
             </ul>
