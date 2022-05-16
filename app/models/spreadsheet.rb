@@ -5,5 +5,6 @@ class Spreadsheet < ApplicationRecord
   has_many :job_notifications
   has_many :scheduled_notifications
 
-  validates_presence_of :g_id
+  validates_presence_of :g_id, :name
+  validates_uniqueness_of :name
 end
