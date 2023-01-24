@@ -27,7 +27,7 @@ class DatabaseSource < ApplicationRecord
     when 'mysql'
       "mysql2://#{username}:#{CGI::escape(password)}@#{host}:#{port}/#{database}?connect_timeout=3"
     when 'sqlserver'
-      "sqlserver://#{username}:#{CGI::escape(password)}@#{host}:#{port}/#{database}?login_timeout=3&timeout=10000"
+      "sqlserver://#{username}:#{CGI::escape(password)}@#{host}:#{port}/#{database}?login_timeout=3&timeout=10000&tds_version=7.4"
     end
   end
 end
