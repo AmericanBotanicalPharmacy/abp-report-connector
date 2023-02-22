@@ -2,7 +2,6 @@ require 'sheet_wraper'
 
 class SyncSpreadsheetsWorker
   include Sidekiq::Worker
-  sidekiq_options retry: false
 
   def perform
     User.find_each do |user|

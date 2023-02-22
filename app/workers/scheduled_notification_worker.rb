@@ -3,7 +3,6 @@ require 'notification_deliverer'
 
 class ScheduledNotificationWorker
   include Sidekiq::Worker
-  sidekiq_options retry: false
 
   def perform(scheduled_notification_id)
     notification = ScheduledNotification.find(scheduled_notification_id)
