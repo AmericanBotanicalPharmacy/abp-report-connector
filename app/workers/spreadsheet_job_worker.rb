@@ -4,6 +4,8 @@ require 'notification_deliverer'
 class SpreadsheetJobWorker
   include Sidekiq::Worker
 
+  sidekiq_options queue: 'default', retry: 3
+
   def perform(job_id)
     job = SpreadsheetJob.find_by id: job_id
     return if job.nil?
