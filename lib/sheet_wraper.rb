@@ -38,7 +38,7 @@ class SheetWraper
   end
 
   def clear_sheet(spreadsheet_id, sheet_name)
-    @service.clear_values(spreadsheet_id, "#{sheet_name}!A1:Z1000")
+    @service.clear_values(spreadsheet_id, "#{sheet_name}!A1:Z10000")
   end
 
   def get_sheet_info(spreadsheet_id)
