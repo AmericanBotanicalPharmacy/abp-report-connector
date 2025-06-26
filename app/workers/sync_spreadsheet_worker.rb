@@ -27,7 +27,7 @@ class SyncSpreadsheetWorker
       )
       job.update_sidekiq_cron
     end
-    spreadsheet.spreadsheet_jobs.where('row_number > ?', values.count - 2).destroy_all
+    spreadsheet.spreadsheet_jobs.where('`row_number` > ?', values.count - 2).destroy_all
 
     notification_values = sw.fetch_sheet_data(spreadsheet.g_id, 'Notifications!A1:F20')
     transform_values(notification_values).each_with_index do |notification_row, index|
@@ -43,7 +43,7 @@ class SyncSpreadsheetWorker
         message: notification_row['MESSAGE']
       )
     end
-    spreadsheet.job_notifications.where('row_index > ?', notification_values.count - 2).destroy_all
+    spreadsheet.job_notifications.where('`row_index` > ?', notification_values.count - 2).destroy_all
 
     if sheet_names.include?('Scheduled Notifications')
       scheduled_notification_values = sw.fetch_sheet_data(spreadsheet.g_id, 'Scheduled Notifications!A1:E20')
@@ -60,7 +60,7 @@ class SyncSpreadsheetWorker
         )
         scheduled_notification.update_sidekiq_cron
       end
-      spreadsheet.scheduled_notifications.where('row_index > ?', scheduled_notification_values.count - 2).destroy_all
+      spreadsheet.scheduled_notifications.where('`row_index` > ?', scheduled_notification_values.count - 2).destroy_all
     end
   end
 
