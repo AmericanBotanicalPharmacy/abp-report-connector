@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_10_11_093856) do
 
-  create_table "database_sources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "database_sources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "db_type"
     t.string "host"
     t.string "database"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_093856) do
     t.index ["user_id"], name: "index_database_sources_on_user_id"
   end
 
-  create_table "job_notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "job_notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "spreadsheet_id", null: false
     t.bigint "spreadsheet_job_id", null: false
     t.string "notify_type"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_093856) do
     t.index ["spreadsheet_job_id"], name: "index_job_notifications_on_spreadsheet_job_id"
   end
 
-  create_table "scheduled_notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "scheduled_notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "spreadsheet_id", null: false
     t.bigint "spreadsheet_job_id", null: false
     t.string "emails"
@@ -56,9 +56,8 @@ ActiveRecord::Schema.define(version: 2021_10_11_093856) do
     t.index ["spreadsheet_job_id"], name: "index_scheduled_notifications_on_spreadsheet_job_id"
   end
 
-  create_table "spreadsheet_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "spreadsheet_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "spreadsheet_id", null: false
-    t.integer "row_index"
     t.integer "row_number"
     t.text "sql"
     t.string "name"
@@ -71,7 +70,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_093856) do
     t.index ["spreadsheet_id"], name: "index_spreadsheet_jobs_on_spreadsheet_id"
   end
 
-  create_table "spreadsheets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "spreadsheets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "g_id"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -80,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_093856) do
     t.index ["user_id"], name: "index_spreadsheets_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
